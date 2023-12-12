@@ -5,7 +5,7 @@ stages:
   - run
 
 run rfm_test:
-  extends: .container-runner-hohgant
+  extends: .container-runner-clariden
   stage: run
   tags: ['clariden-login-baremetal']
   variables:

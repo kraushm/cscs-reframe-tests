@@ -9,5 +9,5 @@ import reframe as rfm
 class SarusExtraLauncherOptionsMixin(rfm.RegressionMixin):
     @run_before('run')
     def set_launcher_options(self):
-        if self.current_system.name in {'hohgant'}:
+        if self.current_system.name in {'clariden'}:
             self.job.launcher.options = ['--mpi=pmi2']

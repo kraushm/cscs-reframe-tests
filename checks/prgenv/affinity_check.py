@@ -17,7 +17,7 @@ from reframe.core.exceptions import SanityError
 class CompileAffinityTool(rfm.CompileOnlyRegressionTest):
     valid_systems = [
         'daint:gpu', 'daint:mc', 'dom:gpu', 'dom:mc',
-        'eiger:mc', 'pilatus:mc', 'hohgant:nvgpu',
+        'eiger:mc', 'pilatus:mc', 'clariden:nvgpu',
         'ault:amdv100'
     ]
     valid_prog_environs = [
@@ -53,7 +53,7 @@ class CompileAffinityTool(rfm.CompileOnlyRegressionTest):
 
 @rfm.simple_test
 class CompileAffinityToolNoOmp(CompileAffinityTool):
-    valid_systems = ['eiger:mc', 'pilatus:mc', 'hohgant:nvgpu']
+    valid_systems = ['eiger:mc', 'pilatus:mc', 'clariden:nvgpu']
 
     @run_before('compile')
     def set_build_opts(self):
@@ -90,7 +90,7 @@ class AffinityTestBase(rfm.RunOnlyRegressionTest):
 
     valid_systems = [
         'daint:gpu', 'daint:mc', 'dom:gpu', 'dom:mc',
-        'eiger:mc', 'pilatus:mc', 'hohgant:nvgpu',
+        'eiger:mc', 'pilatus:mc', 'clariden:nvgpu',
         'ault:amdv100'
     ]
     valid_prog_environs = [
@@ -101,7 +101,7 @@ class AffinityTestBase(rfm.RunOnlyRegressionTest):
     def set_pmi2(self):
         sys_name = self.current_system.name
         env_name = self.current_environ.name
-        if sys_name == 'hohgant' and env_name == 'PrgEnv-nvidia':
+        if sys_name == 'clariden' and env_name == 'PrgEnv-nvidia':
             self.job.launcher.options = ['--mpi=pmi2']
 
     # Dict with the partition's topology - output of "lscpu -e"
@@ -112,7 +112,7 @@ class AffinityTestBase(rfm.RunOnlyRegressionTest):
         'daint:mc':   'topo_dom_mc.json',
         'eiger:mc':   'topo_eiger_mc.json',
         'pilatus:mc':   'topo_eiger_mc.json',
-        'hohgant:nvgpu':   'topo_hohgant_nvgpu.json',
+        'clariden:nvgpu':   'topo_clariden_nvgpu.json',
         'ault:amdv100': 'topo_ault_amdv100.json',
     })
 
@@ -600,7 +600,7 @@ class OneTaskPerNumaNode(AffinityTestBase):
     Multithreading is disabled.
     '''
 
-    valid_systems = ['eiger:mc', 'pilatus:mc', 'hohgant:nvgpu']
+    valid_systems = ['eiger:mc', 'pilatus:mc', 'clariden:nvgpu']
     use_multithreading = False
     num_cpus_per_task = required
 
@@ -630,7 +630,7 @@ class OneTaskPerNumaNode(AffinityTestBase):
     def set_tasks(self):
         self.num_tasks = self.num_numa_nodes
         if self.current_partition.fullname in {'eiger:mc', 'pilatus:mc',
-                                               'hohgant:nvgpu'}:
+                                               'clariden:nvgpu', 'clariden:amdgpu'}:
             self.num_cpus_per_task = 16
 
     @run_before('sanity')

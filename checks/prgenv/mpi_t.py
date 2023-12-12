@@ -13,7 +13,8 @@ class mpit_check(rfm.RegressionTest):
     def __init__(self):
         self.descr = 'Checks MPI_T control/performance variables/categories'
         self.valid_systems = ['daint:gpu', 'dom:gpu', 'daint:mc', 'dom:mc',
-                              'eiger:mc', 'pilatus:mc', 'hohgant:nvgpu']
+                              'eiger:mc', 'pilatus:mc',
+                              'clariden:nvgpu', 'clariden:amdgpu']
         self.valid_prog_environs = [
             'PrgEnv-aocc', 'PrgEnv-cray', 'PrgEnv-gnu', 'PrgEnv-intel',
             'PrgEnv-pgi', 'PrgEnv-nvidia']
@@ -32,7 +33,7 @@ class mpit_check(rfm.RegressionTest):
     def set_pmi2(self):
         sys_name = self.current_system.name
         env_name = self.current_environ.name
-        if sys_name == 'hohgant' and env_name == 'PrgEnv-nvidia':
+        if sys_name == 'clariden' and env_name == 'PrgEnv-nvidia':
             self.job.launcher.options = ['--mpi=pmi2']
 
     @run_before('sanity')

@@ -45,26 +45,20 @@ class AllocSpeedTest(rfm.RegressionTest):
         base_perf = 0.12
         sys_reference = {
             'no': {
-                'hohgant:nvgpu': {
+                'clariden:nvgpu': {
                     'time': (base_perf, None, 0.15, 's')
                 },
-                'hohgant:amdgpu': {
+                'clariden:amdgpu': {
                     'time': (base_perf, None, 0.15, 's')
                 },
-                'hohgant:cpu': {
-                    'time': (base_perf, None, 0.15, 's')
-                }
             },
             '2M': {
-                'hohgant:nvgpu': {
+                'clariden:nvgpu': {
                     'time': (base_perf/2, None, 0.15, 's')
                 },
-                'hohgant:amdgpu': {
+                'clariden:amdgpu': {
                     'time': (base_perf/2, None, 0.15, 's')
                 },
-                'hohgant:cpu': {
-                    'time': (base_perf/2, None, 0.15, 's')
-                }
             },
         }
         self.reference = sys_reference[self.hugepages]

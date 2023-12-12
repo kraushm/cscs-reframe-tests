@@ -85,7 +85,7 @@ class EnvironmentVariableCheck(SlurmSimpleBaseCheck):
                      'arolla:cn', 'arolla:pn',
                      'tsa:cn', 'tsa:pn',
                      'eiger:mc', 'pilatus:mc',
-                     'hohgant:nvgpu']
+                     'clariden:nvgpu', 'clariden:amdgpu']
     executable = '/bin/echo'
     executable_opts = ['$MY_VAR']
     env_vars = {'MY_VAR': 'TEST123456!'}
@@ -277,7 +277,7 @@ class MemoryOverconsumptionMpiCheck(SlurmCompiledBaseCheck):
 class slurm_response_check(rfm.RunOnlyRegressionTest):
     command = parameter(['squeue', 'sacct'])
     descr = 'Slurm command test'
-    valid_systems = ['daint:login', 'dom:login', 'hohgant:login']
+    valid_systems = ['daint:login', 'dom:login', 'clariden:login']
     valid_prog_environs = ['builtin']
     num_tasks = 1
     num_tasks_per_node = 1

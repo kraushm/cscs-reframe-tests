@@ -33,22 +33,18 @@ class StreamTest(rfm.RegressionTest):
     tags = {'production', 'craype'}
     stream_bw_reference = {
         'PrgEnv-cray': {
-            'hohgant:nvgpu': {'triad': (488656, -0.05, None, 'MB/s')},
-            'hohgant:amdgpu': {'triad': (427082, -0.05, None, 'MB/s')},
-            'hohgant:cpu': {'triad': (2001258, -0.05, None, 'MB/s')}
+            'clariden:nvgpu': {'triad': (488656, -0.05, None, 'MB/s')},
+            'clariden:amdgpu': {'triad': (427082, -0.05, None, 'MB/s')},
         },
         'PrgEnv-gnu': {
-            'hohgant:nvgpu': {'triad': (541783, -0.10, None, 'MB/s')},
-            'hohgant:amdgpu': {'triad': (461546, -0.10, None, 'MB/s')},
-            'hohgant:cpu': {'triad': (1548666, -0.10, None, 'MB/s')}
+            'clariden:nvgpu': {'triad': (541783, -0.10, None, 'MB/s')},
+            'clariden:amdgpu': {'triad': (461546, -0.10, None, 'MB/s')},
         },
         'PrgEnv-nvhpc': {
-            'hohgant:nvgpu': {'triad': (511500, -0.05, None, 'MB/s')},
-            'hohgant:cpu': {'triad': (1791161, -0.05, None, 'MB/s')}
+            'clariden:nvgpu': {'triad': (511500, -0.05, None, 'MB/s')},
         },
         'PrgEnv-nvidia': {
-            'hohgant:nvgpu': {'triad': (477077, -0.05, None, 'MB/s')},
-            'hohgant:cpu': {'triad': (1804001, -0.05, None, 'MB/s')}
+            'clariden:nvgpu': {'triad': (477077, -0.05, None, 'MB/s')},
         }
     }
 

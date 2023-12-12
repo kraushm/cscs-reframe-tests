@@ -8,7 +8,7 @@ from reframe.core.backends import getlauncher
 
 class BuildahTestBase(rfm.RunOnlyRegressionTest):
     valid_systems = ['dom:gpu', 'dom:mc', 'daint:gpu', 'daint:mc',
-            'eiger:mc', 'pilatus:mc', 'hohgant:nvgpu', 'hohgant:cpu']
+            'eiger:mc', 'pilatus:mc', 'clariden:nvgpu', 'clariden:amdgpu']
     valid_prog_environs = ['builtin']
     num_tasks = 1
     num_nodes = 1
@@ -78,7 +78,7 @@ class BuildahTestBase(rfm.RunOnlyRegressionTest):
 
 @rfm.simple_test
 class BuildahCudaDeviceQueryTest(BuildahTestBase):
-    valid_systems = ['dom:gpu', 'daint:gpu', 'hohgant:nvgpu']
+    valid_systems = ['dom:gpu', 'daint:gpu', 'clariden:nvgpu', 'clariden:amdgpu']
     dockerfile = 'Dockerfile_cuda'
     image_tag = 'cuda_query:latest'
 
@@ -91,7 +91,7 @@ class BuildahMpichOSUTest(BuildahTestBase):
 
 @rfm.simple_test
 class ContainerCudaDeviceQueryTest(rfm.RunOnlyRegressionTest):
-    valid_systems = ['dom:gpu', 'daint:gpu', 'hohgant:nvgpu']
+    valid_systems = ['dom:gpu', 'daint:gpu', 'clariden:nvgpu', 'clariden:amdgpu']
     valid_prog_environs = ['builtin']
     platform = parameter(['Sarus', 'Singularity'])
     num_tasks = 1
@@ -147,7 +147,7 @@ class ContainerCudaDeviceQueryTest(rfm.RunOnlyRegressionTest):
 @rfm.simple_test
 class ContainerMpichOSUTest(rfm.RunOnlyRegressionTest):
     valid_systems = ['dom:gpu', 'dom:mc', 'daint:gpu', 'daint:mc',
-            'eiger:mc', 'pilatus:mc', 'hohgant:nvgpu', 'hohgant:cpu']
+            'eiger:mc', 'pilatus:mc', 'clariden:nvgpu', 'clariden:amdgpu']
     valid_prog_environs = ['builtin']
     platform = parameter(['Sarus', 'Singularity'])
     num_tasks_per_node = 1
@@ -215,7 +215,7 @@ class ContainerMpichOSUTest(rfm.RunOnlyRegressionTest):
 
     @run_after('setup')
     def set_launcher_options(self):
-        if self.current_system.name in {'hohgant'}: 
+        if self.current_system.name in {'clariden'}:
             self.job.launcher.options = ['--mpi=pmi2']
 
     @sanity_function
@@ -223,11 +223,11 @@ class ContainerMpichOSUTest(rfm.RunOnlyRegressionTest):
         return sn.assert_found(r'^4194304\s+\S+', self.stdout)
 
     @run_before('performance')
-    def set_singularity_hohgant_perf(self):
-        # No mpi replacement is performed when using singularity on hohgant
-        if (self.current_system.name == 'hohgant' and 
+    def set_singularity_clariden_perf(self):
+        # No mpi replacement is performed when using singularity on clariden
+        if (self.current_system.name == 'clariden' and
             self.platform == 'Singularity'):
-            self.reference = {'hohgant:nvgpu':
+            self.reference = {'clariden:nvgpu':
                 {'bw': (2570.0, -0.10, None, 'MB/s')}
             }
 

@@ -157,7 +157,7 @@ class cuda_aware_mpi_check_xc(rfm.RegressionTest):
                   'code-samples.git')
     valid_systems = [
         'daint:gpu',
-        # TODO: 'dom:gpu', 'hohgant:nvgpu', 'hohgant:nvgpu-sqfs',
+        # TODO: 'dom:gpu', 'clariden:nvgpu', 'clariden:nvgpu-sqfs',
     ]
     valid_prog_environs = ['PrgEnv-gnu']  # TODO: PrgEnv-cray
     env_vars = {

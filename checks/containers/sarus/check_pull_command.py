@@ -19,7 +19,7 @@ class SarusPullCommandCheck(rfm.RunOnlyRegressionTest):
 
     @run_after('setup')
     def set_modules(self):
-        if self.current_system.name not in {'eiger', 'pilatus', 'hohgant'}:
+        if self.current_system.name not in {'eiger', 'pilatus', 'clariden'}:
             self.modules = ['sarus']
 
     @sanity_function
