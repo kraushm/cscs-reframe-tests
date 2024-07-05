@@ -53,7 +53,7 @@ environ_names =  ([f'{image_name}_{e}'for e in environs] or
 partitions = [
     {
         'name': f'nvgpu',
-        'scheduler': 'slurm',
+        'scheduler': 'squeue',
         'time_limit': '10m',
         'environs': environ_names,
         'container_platforms': [
@@ -91,7 +91,7 @@ partitions = [
     },
     {
         'name': f'cpu',
-        'scheduler': 'slurm',
+        'scheduler': 'squeue',
         'time_limit': '10m',
         'container_platforms': [
             {

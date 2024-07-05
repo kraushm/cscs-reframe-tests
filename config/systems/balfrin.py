@@ -30,7 +30,7 @@ site_configuration = {
                 },
                 {
                     'name': 'nvgpu',
-                    'scheduler': 'slurm',
+                    'scheduler': 'squeue',
                     'time_limit': '10m',
                     'environs': [
                         'builtin',
@@ -66,7 +66,7 @@ site_configuration = {
                 },
                 {
                     'name': 'cpu',
-                    'scheduler': 'slurm',
+                    'scheduler': 'squeue',
                     'time_limit': '10m',
                     'container_platforms': [
                         {
