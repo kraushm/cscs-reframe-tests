@@ -22,7 +22,7 @@ site_configuration = {
                         'builtin',
                     ],
                     'features': [
-                        'remote', 'uenv',
+                        'remote',
                     ],
                     'descr': 'Login nodes',
                     'max_jobs': 4,
