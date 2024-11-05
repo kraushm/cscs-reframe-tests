@@ -16,7 +16,7 @@ class CompileAffinityTool(rfm.CompileOnlyRegressionTest):
     valid_systems = [
         '*'
     ]
-    valid_prog_environs = ['+mpi']
+    valid_prog_environs = ['+mpi -serial']
     build_system = 'Make'
     build_locally = False
 
@@ -42,7 +42,7 @@ class CompileAffinityTool(rfm.CompileOnlyRegressionTest):
 
 class CompileAffinityToolNoOmp(CompileAffinityTool):
     valid_systems = ['*']
-    valid_prog_environs = ['+mpi +openmp']
+    valid_prog_environs = ['+mpi +openmp -serial']
 
     @run_before('compile')
     def set_build_opts(self):
